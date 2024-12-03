@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
+import {cookies} from "next/headers";
 
 const roboto = Roboto({
    weight: ["100", "300", "500", "400", "700", "900"],
@@ -22,11 +23,11 @@ export default function Layout({
    root: React.ReactNode;
    auth: React.ReactNode;
 }) {
-   const role = "auth";
+   const role = cookies().get('access_token')?.value;
    return (
       <html lang="en">
          <body className={cn("relative h-fit min-h-screen", roboto.className)}>
-            {role !== "auth" ? auth : root}
+            {role ? root : auth}
          </body>
       </html>
    );
