@@ -1,9 +1,9 @@
+import Header from "@/components/layout/header";
 import { AppSidebar } from "@/components/layout/side-bar";
 import {
    Sidebar,
    SidebarContent,
    SidebarProvider,
-   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 export default function RootLayout({
@@ -14,13 +14,15 @@ export default function RootLayout({
    return (
       <SidebarProvider>
          <Sidebar>
-            <SidebarContent>
+            <SidebarContent className="bg-gradient-to-b from-sky-500 to-sky-600 text-white">
                <AppSidebar />
             </SidebarContent>
          </Sidebar>
-         <main>
-            <SidebarTrigger />
-            {children}
+         <main className="w-full min-h-screen h-full flex-col flex">
+            <Header />
+            <div className="w-full px-10 bg-slate-50 h-full mt-[60.8px]">
+               {children}
+            </div>
          </main>
       </SidebarProvider>
    );
