@@ -1,5 +1,4 @@
 "use client";
-
 import {
    Table,
    TableBody,
@@ -19,7 +18,7 @@ import {
 import useSWR from "swr";
 import { searchBill } from "@/service/bill";
 import { END_POINTS } from "@/constants/endpoint";
-import { formatVND } from "@/lib/utils";
+import { formatDateTime, formatVND } from "@/lib/utils";
 import Status, { TBillStatus } from "./status";
 
 export function PaginationDemo() {
@@ -30,12 +29,12 @@ export function PaginationDemo() {
                <PaginationPrevious href="#" />
             </PaginationItem>
             <PaginationItem>
-               <PaginationLink href="#">1</PaginationLink>
+               <PaginationLink isActive href="#">
+                  1
+               </PaginationLink>
             </PaginationItem>
             <PaginationItem>
-               <PaginationLink href="#" isActive>
-                  2
-               </PaginationLink>
+               <PaginationLink href="#">2</PaginationLink>
             </PaginationItem>
             <PaginationItem>
                <PaginationLink href="#">3</PaginationLink>
@@ -59,23 +58,33 @@ export function BillTable() {
 
    return (
       <div className="flex flex-col items-end w-full gap-4">
-         <Table className="rounded">
-            <TableHeader className="bg-slate-200 ">
+         <Table className="rounded-md shadow-md overflow-hidden px-2">
+            <TableHeader className="bg-slate-200">
                <TableRow className="">
-                  <TableHead className=" text-slate-900">Name</TableHead>
-                  <TableHead className="text-slate-900">Phone</TableHead>
-                  <TableHead className="text-slate-900">Departure</TableHead>
-                  <TableHead className="text-slate-900">Destination</TableHead>
-                  <TableHead className="text-slate-900">Start At</TableHead>
-                  <TableHead className="text-slate-900 w-[100px]">
+                  <TableHead className=" text-slate-700 font-semibold">
+                     Name
+                  </TableHead>
+                  <TableHead className="text-slate-700 font-semibold">
+                     Phone
+                  </TableHead>
+                  <TableHead className="text-slate-700 font-semibold">
+                     Departure
+                  </TableHead>
+                  <TableHead className="text-slate-700 font-semibold">
+                     Destination
+                  </TableHead>
+                  <TableHead className="text-slate-700 font-semibold">
+                     Start At
+                  </TableHead>
+                  <TableHead className="text-slate-700 font-semibold w-[100px]">
                      Status
                   </TableHead>
-                  <TableHead className="text-slate-900 text-right">
+                  <TableHead className="text-slate-700 font-semibold text-right">
                      Price
                   </TableHead>
                </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="bg-white">
                {data?.content.map((bill) => (
                   <TableRow key={bill.id}>
                      <TableHead className="text-slate-700 font-normal">
@@ -91,7 +100,7 @@ export function BillTable() {
                         {bill.trip.regionToName}
                      </TableHead>
                      <TableHead className="text-slate-700 font-normal">
-                        {bill.trip.startTime}
+                        {formatDateTime(bill.trip.startTime)}
                      </TableHead>
                      <TableHead className="text-slate-700 font-normal w-[100px]">
                         <Status name={bill.status as TBillStatus} />

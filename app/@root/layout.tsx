@@ -20,7 +20,7 @@ export default function RootLayout({
          </Sidebar>
          <main className="w-full min-h-screen h-full flex-col flex">
             <Header />
-            <div className="w-full px-10 bg-slate-50 h-full mt-[60.8px]">
+            <div className="w-full px-10 bg-slate-100 h-full mt-[60.8px]">
                {children}
             </div>
          </main>

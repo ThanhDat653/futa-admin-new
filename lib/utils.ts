@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { clsx, type ClassValue } from "clsx";
+import { ISODateString } from "next-auth";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -74,6 +76,21 @@ export function formatTime(dateTimeString: string): string {
    const minutes = date.getMinutes().toString().padStart(2, "0");
 
    return `${hours}:${minutes}`;
+}
+
+export function formatDateTime(string: ISODateString): string {
+   const date = new Date(string);
+
+   // Lấy ngày, tháng, năm
+   const day = date.getDate().toString().padStart(2, "0");
+   const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Tháng bắt đầu từ 0
+   const year = date.getFullYear();
+
+   // Lấy giờ, phút
+   const hours = date.getHours().toString().padStart(2, "0");
+   const minutes = date.getMinutes().toString().padStart(2, "0");
+
+   return `${day}-${month}-${year} | ${hours}:${minutes}`;
 }
 
 export const convertToString = (
