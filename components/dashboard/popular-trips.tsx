@@ -1,17 +1,14 @@
-import Link from "next/link";
 import {IScheduleGroupByRegion, IScheduleInGroup} from "@/models/dashboard";
 import {formatDistance, formatDuration, formatVND} from "@/lib/utils";
 
 interface IPopularRouteCardProps {
     departure: string
-    img: string
     schedule: IScheduleInGroup[]
 }
 
 const PopularRouteCard = ({
                               schedule,
                               departure,
-                              img,
                           }: IPopularRouteCardProps) => {
     return (
         <div className="flex w-full flex-col">
@@ -48,7 +45,6 @@ const PopularRoute = async ({data}: { data: IScheduleGroupByRegion[] }) => {
                         <PopularRouteCard
                             schedule={schedule.schedules}
                             departure={schedule.name}
-                            img={`https://trip.s3-hcm-r1.s3cloud.vn/landing/${schedule.slug}.png`}
                             key={schedule.slug}
                         />
                     ))}
