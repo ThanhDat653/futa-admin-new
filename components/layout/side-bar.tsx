@@ -6,7 +6,7 @@ import {
    Map,
    ChartPie,
    UserPen,
-   PanelLeftDashed,
+   PanelLeftDashed, LayoutDashboard,
 } from "lucide-react";
 
 import {
@@ -21,6 +21,11 @@ import { cn } from "@/lib/utils";
 
 // Menu items.
 const items = [
+   {
+      title: "Dashboard",
+      url: "/",
+      icon: LayoutDashboard,
+   },
    {
       title: "Schedule",
       url: "schedules",
@@ -62,7 +67,7 @@ export function AppSidebar() {
                      <SidebarMenuButton
                         asChild
                         className={cn(
-                           pathname.includes(item.url)
+                           pathname.endsWith(item.url)
                               ? "bg-white text-slate-900"
                               : "",
                         )}

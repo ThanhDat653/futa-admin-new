@@ -13,4 +13,11 @@ export const END_POINTS = {
       SEARCH: "bills/admin/search",
       STATUS: "bills/status",
    },
+   SCHEDULE: {
+      ALL: 'schedules',
+   },
+   DASHBOARD: {
+      POPULAR_TRIP: "schedules/popular",
+      CHART: "statistics",
+   }
 };

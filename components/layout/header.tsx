@@ -12,7 +12,7 @@ const Header = () => {
          style={{ width: `calc(100vw - 256px)` }}
       >
          <h1 className="capitalize text-slate-600 font-medium">
-            {pathname.split("/")[1]}
+            {pathname.split("/")[1] || "Dashboard"}
          </h1>
          <div className="flex justify-center items-center gap-3 w-fit">
             <Avatar className="size-9">
